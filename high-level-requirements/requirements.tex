@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\title{High Level Requirements}
+\date{\vspace{-10ex}}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem Statement}
+
+Currently, there is no standardized place for course staff, such as Course Producers and Teaching Assistants, to disclose the current location of their office hours or manage student volume during busy office hours. Students often find it hard to locate CPs and TAs for their course in a crowded space, and must depend on confusing and inconsistent signage. In addition, course staff who have busy office hours have a tough time keeping track of students in an organized way.
+
+\section*{Product Objective}
+
+We are building a web application that presents a graphical floor map of SAL, where office hours are often held, and manages an office hours queue for each course. Course staff can mark their location on the map, which students will be able to view. Students can enter their name into a queue for a particular class, which the course staff will be able to view and modify.
+
+\section*{Client Side}
+
+\subsection*{Floor Map}
+
+The graphical floor map of SAL will be the main feature. It will be separated into sections that we deem appropriate (e.g by table, by whiteboard). The sections will be clickable. Course staff will be able to click it to mark a certain course in that space, and students can click to find out which courses occupy that space.
+
+\subsection*{Queue}
+
+Students will be shown a form that asks them to enter their name. Upon submission they will see their place in the queue. They will receive a notification when they are next in line. Course staff will be able to see the queue, and be able to modify it (e.g cross off names if they are not present or have received help).
+
+\subsection*{Course Staff}
+
+The course staff will have a password protected account that will require validation from the database. This will give them access to the marking functionality on the course map and the ability to modify the student queue.
+
+\subsection*{Student}
+
+Students seeking help will be treated as guests and will not have to sign in. They will have view-only access to the floor plan and be directed to a form for the queue. They will enter their name for the course staff view and an email if they want to receive a notification.
+
+\section*{Server Side}
+
+\subsection*{Database}
+
+\end{document}
