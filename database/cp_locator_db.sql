@@ -25,7 +25,7 @@ CREATE TABLE current_cps (
 CREATE TABLE student_queue (
   student_id int NOT NULL AUTO_INCREMENT,
   student_name varchar(255) NOT NULL,
-  student_email varchar(255),  --allowed to submit w/o email
+  student_phone bigint,  --allowed to submit w/o phone
   FOREIGN KEY (class_id) REFERENCES classes(class_id)
   PRIMARY KEY (student_id)
 );
