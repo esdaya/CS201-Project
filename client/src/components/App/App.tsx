@@ -1,12 +1,12 @@
 import React from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Sidebar from "../Sidebar";
 
-const drawerWidth = 360;
+const drawerWidth = 300;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,16 +48,7 @@ const App: React.FC = () => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
       </main>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        anchor="right"
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.toolbar} />
-      </Drawer>
+      <Sidebar drawerWidth={drawerWidth} />
     </div>
   );
 };
