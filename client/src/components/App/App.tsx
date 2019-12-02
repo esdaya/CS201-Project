@@ -3,6 +3,7 @@ import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { AppBar, CssBaseline, Toolbar, Typography } from "@material-ui/core";
 import Sidebar from "../Sidebar";
 import FloorMap from "../FloorMap";
+import { demoClasses } from "../../types";
 
 const drawerWidth = 300;
 
@@ -47,7 +48,7 @@ const App: React.FC = () => {
         <div className={classes.toolbar} />
         <FloorMap />
       </main>
-      <Sidebar drawerWidth={drawerWidth} />
+      <Sidebar drawerWidth={drawerWidth} classes={demoClasses} />
     </div>
   );
 };

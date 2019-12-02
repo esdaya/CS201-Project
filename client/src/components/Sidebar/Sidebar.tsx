@@ -5,11 +5,16 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListSubheader
+  ListSubheader,
+  ListItemSecondaryAction,
+  IconButton
 } from "@material-ui/core";
+import { PersonAdd as PersonAddIcon } from "@material-ui/icons";
+import { Class } from "../../types";
 
 interface SidebarProps {
   drawerWidth: number;
+  classes: Class[];
 }
 
 const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) =>
@@ -25,8 +30,8 @@ const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) =>
   })
 );
 
-const Sidebar: React.FC<SidebarProps> = ({ drawerWidth }) => {
-  const classes = useStyles({ drawerWidth });
+const Sidebar: React.FC<SidebarProps> = props => {
+  const classes = useStyles(props);
 
   return (
     <aside>
@@ -40,9 +45,19 @@ const Sidebar: React.FC<SidebarProps> = ({ drawerWidth }) => {
       >
         <div className={classes.toolbar} />
         <List subheader={<ListSubheader>Classes</ListSubheader>}>
-          <ListItem button>
-            <ListItemText primary="Sent mail" />
-          </ListItem>
+          {props.classes.map((value, index) => (
+            <ListItem button>
+              <ListItemText
+                primary={value.name}
+                secondary={value.students.length + " waiting"}
+              />
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="comments">
+                  <PersonAddIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </aside>
