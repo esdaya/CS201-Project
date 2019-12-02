@@ -1,0 +1,28 @@
+<svg version="1.1" width="960" height="720" viewBox="0.0 0.0 960.0 720.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <clipPath id="p.0">
+        <path d="m0 0l960.0 0l0 720.0l-960.0 0l0 -720.0z" clip-rule="nonzero"/>
+    </clipPath>
+    <g clip-path="url(#p.0)">
+        <path fill="#efefed" id="sal" d="m211.15486 323.40683l345.16534 0l0 320.94485l-345.16534 0z" fill-rule="evenodd"/>
+        <path fill="#efefef" id="sal-109" d="m375.82416 85.333336l270.99213 0l0 279.9055l-270.99213 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-1" d="m239.83202 332.4567l31.149612 0l0 31.149597l-31.149612 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-2" d="m313.19684 332.4567l31.149628 0l0 31.149597l-31.149628 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-3" d="m405.84515 377.1391l31.149597 0l0 31.149628l-31.149597 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-4" d="m464.4252 377.1391l31.149597 0l0 31.149628l-31.149597 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-5" d="m315.7533 461.38058l31.149597 0l0 31.149597l-31.149597 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-6" d="m402.53018 533.1076l0 0c0 -7.236206 5.8661194 -13.102356 13.102356 -13.102356l0 0c3.4749756 0 6.807617 1.3804321 9.2647705 3.8375854c2.4571838 2.4571533 3.8375854 5.789795 3.8375854 9.2647705l0 0c0 7.236267 -5.8661194 13.102356 -13.102356 13.102356l0 0c-7.2362366 0 -13.102356 -5.866089 -13.102356 -13.102356z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-7" d="m415.8832 578.28345l0 0c0 -7.236206 5.8661194 -13.102356 13.102356 -13.102356l0 0c3.4749756 0 6.8075867 1.3804321 9.2647705 3.8375854c2.4571533 2.4572144 3.8375854 5.789795 3.8375854 9.2647705l0 0c0 7.236267 -5.8661194 13.102356 -13.102356 13.102356l0 0c-7.2362366 0 -13.102356 -5.866089 -13.102356 -13.102356z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-8" d="m460.24408 578.28345l0 0c0 -7.236206 5.86615 -13.102356 13.102386 -13.102356l0 0c3.474945 0 6.8075867 1.3804321 9.2647705 3.8375854c2.4571533 2.4572144 3.8375854 5.789795 3.8375854 9.2647705l0 0c0 7.236267 -5.8661194 13.102356 -13.102356 13.102356l0 0c-7.2362366 0 -13.102386 -5.866089 -13.102386 -13.102356z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-9" d="m509.86615 572.1496l31.149597 0l0 31.149597l-31.149597 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-10" d="m541.01575 377.1391l15.307068 0l0 37.039368l-15.307068 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-11" d="m541.01575 419.84253l15.307068 0l0 37.039368l-15.307068 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-12" d="m541.01575 462.54593l15.307068 0l0 37.039368l-15.307068 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-13" d="m541.01575 505.24933l15.307068 0l0 37.039368l-15.307068 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-14" d="m556.3228 300.65878l90.48822 0l0 65.10239l-90.48822 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-15" d="m556.3228 226.65092l90.48822 0l0 65.10237l-90.48822 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-16" d="m556.3228 167.96063l31.149597 0l0 31.149597l-31.149597 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-17" d="m600.85565 111.7664l31.149597 0l0 31.149612l-31.149597 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-18" d="m376.17584 85.333336l70.36221 0l0 55.11811l-70.36221 0z" fill-rule="evenodd"/>
+        <path fill="#cccccc" id="table-19" d="m453.49344 85.333336l70.36221 0l0 55.11811l-70.36221 0z" fill-rule="evenodd"/>
+    </g>
+</svg>
