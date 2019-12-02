@@ -52,7 +52,7 @@ const Sidebar: React.FC<SidebarProps> = props => {
                 secondary={value.students.length + " waiting"}
               />
               <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="comments">
+                <IconButton edge="end">
                   <PersonAddIcon />
                 </IconButton>
               </ListItemSecondaryAction>
