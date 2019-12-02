@@ -1,10 +1,8 @@
 import React from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import { AppBar, CssBaseline, Toolbar, Typography } from "@material-ui/core";
 import Sidebar from "../Sidebar";
+import FloorMap from "../FloorMap";
 
 const drawerWidth = 300;
 
@@ -47,6 +45,7 @@ const App: React.FC = () => {
       </AppBar>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <FloorMap />
       </main>
       <Sidebar drawerWidth={drawerWidth} />
     </div>

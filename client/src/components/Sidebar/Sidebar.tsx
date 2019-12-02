@@ -1,6 +1,12 @@
 import React from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader
+} from "@material-ui/core";
 
 interface SidebarProps {
   drawerWidth: number;
@@ -33,6 +39,11 @@ const Sidebar: React.FC<SidebarProps> = ({ drawerWidth }) => {
         }}
       >
         <div className={classes.toolbar} />
+        <List subheader={<ListSubheader>Classes</ListSubheader>}>
+          <ListItem button>
+            <ListItemText primary="Sent mail" />
+          </ListItem>
+        </List>
       </Drawer>
     </aside>
   );
