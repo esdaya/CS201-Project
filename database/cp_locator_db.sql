@@ -26,6 +26,11 @@ CREATE TABLE student_queue (
   student_id int NOT NULL AUTO_INCREMENT,
   student_name varchar(255) NOT NULL,
   student_phone bigint,  --allowed to submit w/o phone
-  FOREIGN KEY (class_id) REFERENCES classes(class_id)
+  FOREIGN KEY (class_id) REFERENCES classes(class_id),
   PRIMARY KEY (student_id)
+);
+
+CREATE TABLE front_of_queue(
+	FOREIGN KEY (student_id) REFERENCES student_queue(student_id),
+	FOREIGN KEY (class_id) REFERENCES classes(class_id)
 );
