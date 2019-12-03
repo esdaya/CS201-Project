@@ -15,6 +15,8 @@ import { Class } from "../../types";
 interface SidebarProps {
   drawerWidth: number;
   classes: Class[];
+  classId: number | null;
+  setClassId: (id: number) => void;
 }
 
 const useStyles = makeStyles<Theme, SidebarProps>((theme: Theme) =>
@@ -46,7 +48,11 @@ const Sidebar: React.FC<SidebarProps> = props => {
         <div className={classes.toolbar} />
         <List subheader={<ListSubheader>Classes</ListSubheader>}>
           {props.classes.map((value, index) => (
-            <ListItem button>
+            <ListItem
+              button
+              selected={props.classId === value.class_id}
+              onClick={() => props.setClassId(value.class_id)}
+            >
               <ListItemText
                 primary={value.name}
                 secondary={value.students.length + " waiting"}

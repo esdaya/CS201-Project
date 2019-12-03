@@ -29,7 +29,7 @@ export const demoClasses: Class[] = [
   {
     class_id: 5,
     name: "EE 109",
-    loc_id: 0,
+    loc_id: 13,
     cps: [{ cp_id: 13, name: "Brian Price" }],
     students: [{ student_id: 1 }]
   },

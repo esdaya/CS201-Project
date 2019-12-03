@@ -1,7 +1,8 @@
 import React from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { School as SchoolIcon } from "@material-ui/icons";
-import { IconButton, Box } from "@material-ui/core";
+import { IconButton, Box, Badge } from "@material-ui/core";
+import { Class } from "../../types";
 
 const locations = [
   { left: "10%", top: "48%" },
@@ -32,7 +33,7 @@ const rooms = [
 
 const useStyles = makeStyles<Theme>((theme: Theme) =>
   createStyles({
-    container: {
+    innerContainer: {
       position: "relative",
       left: "-5%",
       top: 0,
@@ -40,12 +41,12 @@ const useStyles = makeStyles<Theme>((theme: Theme) =>
       width: "100%",
       paddingTop: "95%"
     },
-    root: {
+    outerContainer: {
       minWidth: 480,
       maxWidth: 720,
       width: "100%"
     },
-    root2: {
+    root: {
       display: "flex",
       justifyContent: "center",
       width: "100%",
@@ -54,12 +55,17 @@ const useStyles = makeStyles<Theme>((theme: Theme) =>
   })
 );
 
-const FloorMap: React.FC = () => {
+interface FloorMapProps {
+  classes: Class[];
+  setClassId: (id: number) => void;
+}
+
+const FloorMap: React.FC<FloorMapProps> = props => {
   const classes = useStyles();
   return (
-    <div className={classes.root2}>
-      <div className={classes.root}>
-        <div className={classes.container}>
+    <div className={classes.root}>
+      <div className={classes.outerContainer}>
+        <div className={classes.innerContainer}>
           {rooms.map(({ left, top, width, height }, index) => {
             return (
               <Box
@@ -72,13 +78,18 @@ const FloorMap: React.FC = () => {
               ></Box>
             );
           })}
-          {locations.map(({ left, top }, index) => (
-            <Box position="absolute" left={left} top={top}>
-              <IconButton>
-                <SchoolIcon />
-              </IconButton>
-            </Box>
-          ))}
+          {props.classes.map((value, index) => {
+            const { left, top } = locations[value.loc_id];
+            return (
+              <Box position="absolute" left={left} top={top}>
+                <IconButton onClick={() => props.setClassId(value.class_id)}>
+                  <Badge badgeContent={value.students.length} color="primary">
+                    <SchoolIcon />
+                  </Badge>
+                </IconButton>
+              </Box>
+            );
+          })}
         </div>
       </div>
     </div>
