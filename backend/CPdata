@@ -1,0 +1,198 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.http.Cookie;
+
+
+
+
+public class CPdata {
+	public static String addCP(String name, String email, String password, String className, String classPassword, boolean reg) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		
+		String searchString = "SELECT * from cps WHERE cp_email = ?";
+		String searchString2 = "SELECT * from classes WHERE class_name = ? AND class_code = ?";
+		String newEntry = "INSERT INTO cps (cp_name, cp_email, cp_password) VALUES (?,?,?)";
+		String newEntry2 = "INSERT INTO current_cps (cp_id, class_id) VALUES (?,?)";
+		String returner = "0";
+		int cpID = 99999; 
+		int classID = 99999;
+		try {
+			conn = DriverManager.getConnection("jdbc:mysql://google/cp_locator?cloudSqlInstance=heroic"
+					+ "-diode-255523:us-central1:assignment3" + 
+					"&socketFactory=com.google.cloud.sql.mysql."
+					+ "SocketFactory&useSSL=false&user=ehsandaya&password=esdaya");
+			ps = conn.prepareStatement(searchString);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			boolean foundMatch = false;
+			while(rs.next()) {
+				String emailValue = rs.getString("cp_email");
+				String passwordValue = rs.getString("cp_password");
+				
+				if(email.equalsIgnoreCase(emailValue)) {
+					foundMatch = true;
+					if(reg) { 
+						//if we aren't supposed to see users we know
+						returner = "1";
+					}
+					//we've seen this user before 
+					if(password.equals(passwordValue)) { //passwords are case sensitive
+						if(reg) { 
+							//if we aren't supposed to see users we know
+							returner = "1";
+						}
+						else { //user exists and is supposed to 
+							returner = "2";
+							cpID = rs.getInt("cp_id");
+						}
+					}
+					else if(reg==false) { //the passwords do not match
+						returner = "4";
+					}
+					break;
+				}
+			}
+			boolean foundmatch2 = false;
+			if(reg==false) { //doesn't matter when you are registering, only for login
+				try {
+					if(rs!=null) {
+						rs.close();
+					}
+					if(ps!=null) {
+						ps.close();
+					}
+					if(conn!=null) {
+						conn.close();
+					}
+				}
+				catch(SQLException sqle) {
+					System.out.println("sqle: " + sqle.getMessage());
+				}			
+				 //unnecessary, just as a precaution if there was an error in the first set
+				Connection conn2 = null;
+				PreparedStatement ps2 = null;
+				ResultSet rs2 = null;
+				conn2 = DriverManager.getConnection("jdbc:mysql://google/cp_locator?cloudSqlInstance=heroic"
+						+ "-diode-255523:us-central1:assignment3" + 
+						"&socketFactory=com.google.cloud.sql.mysql."
+						+ "SocketFactory&useSSL=false&user=ehsandaya&password=esdaya");
+				ps2 = conn2.prepareStatement(searchString2);
+				ps2.setString(1, className);
+				ps2.setString(2, classPassword);
+				rs2 = ps2.executeQuery();
+				
+				while(rs2.next()) {
+					String classNameValue = rs2.getString("class_name");
+					String classPasswordValue = rs2.getString("class_code");
+					if(className.equalsIgnoreCase(classNameValue) && classPassword.equalsIgnoreCase(classPasswordValue)) {
+						foundmatch2 = true;
+						classID = rs2.getInt("class_id");
+						break;
+					}
+				}
+			}
+			//if you want to make a new user
+			boolean createdNew = false;
+			if((foundMatch==false) && (reg==true)) {
+				ps.close();
+				if(name=="") { name = "cp"; }   //default
+				
+				ps = conn.prepareStatement(newEntry);
+				ps.setString(1, name);
+				ps.setString(2, email);
+				ps.setString(3, password);
+				ps.executeUpdate();
+				returner = "2"; //created a new user
+				createdNew = true;
+			}
+			int tobeReturned = 0;
+			if(createdNew) {
+				
+				try {
+					conn = DriverManager.getConnection("jdbc:mysql://google/cp_locator?cloudSqlInstance=heroic"
+							+ "-diode-255523:us-central1:assignment3" + 
+							"&socketFactory=com.google.cloud.sql.mysql."
+							+ "SocketFactory&useSSL=false&user=ehsandaya&password=esdaya");
+					ps = conn.prepareStatement(searchString);
+					ps.setString(1, email);
+					rs = ps.executeQuery();
+					while(rs.next()) {
+						tobeReturned = rs.getInt("cp_id");
+						returner = "2," + tobeReturned;
+					}
+				}
+				catch (SQLException e){
+					e.printStackTrace();
+				}
+				finally {
+					try {
+						if(rs!=null) {
+							rs.close();
+						}
+						if(ps!=null) {
+							ps.close();
+						}
+						if(conn!=null) {
+							conn.close();
+						}
+					}
+					catch(SQLException sqle) {
+						System.out.println("sqle: " + sqle.getMessage());
+					}
+				}
+			}
+			else if(!foundMatch && !reg) {
+				returner = "3";  //could not verify login
+			}
+			else if(returner.equals("2")) { //if you have good input so far
+				if(reg==false && foundmatch2==false) {returner = "5"; } //class password did not match the class
+				else if(reg==false && foundmatch2==true) {//all good input
+					if(classID==99999 || cpID==99999) { //bad
+						returner = "6";
+					}
+					else { //absolutely perfect input (finally)
+						ps.close();
+						ps = conn.prepareStatement(newEntry2);
+						ps.setInt(1, cpID);
+						ps.setInt(2, classID);
+						ps.executeUpdate(); //add to active cps 
+						returner = "2," + cpID + "," + classID; 
+					}
+				}
+			}
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(rs!=null) {
+					rs.close();
+				}
+				if(ps!=null) {
+					ps.close();
+				}
+				if(conn!=null) {
+					conn.close();
+				}
+			}
+			catch(SQLException sqle) {
+				System.out.println("sqle: " + sqle.getMessage());
+			}
+		}
+		if (returner.equals("1")) {return "1"; } //exists (shouldn't) reg,
+		else if (returner.substring(0,1).equals("2")) {return returner; } //logged in (good) both
+		else if (returner.equals("3")) {return "3"; } //does not exist !reg
+		else if (returner.equals("4")) {return "4"; } //wrong password !reg
+		else if (returner.equals("5")) {return "5"; } //bad class password !reg
+		else {return "6"; } //error both
+	}
+	
+}
